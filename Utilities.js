@@ -26,10 +26,12 @@ const circle = (x, y, r, color, stroke=true, width=1) => {
     ctx.closePath();
 };
 
-const ellipse = (x, y, rx, ry, rot, θs, θe) => {
+const ellipse = (x, y, rx, ry, rot, color, stroke) => {
     ctx.beginPath();
-    ctx.ellipse(x, y, rx, ry, rot, θs, θe);
-    ctx.stroke();
+    ctx.ellipse(x, y, rx, ry, rot, 0, 2*π);
+    ctx.strokeStyle = color;
+    ctx.fillStyle = color;
+    stroke? ctx.stroke() : ctx.fill;
     ctx.closePath;
 };
 
