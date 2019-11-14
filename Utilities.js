@@ -32,7 +32,7 @@ const ellipse = (x, y, rx, ry, rot, color, stroke=true, width=1) => {
     ctx.strokeStyle = color;
     ctx.fillStyle = color;
     ctx.lineWidth = width;
-    stroke? ctx.stroke() : ctx.fill;
+    stroke? ctx.stroke() : ctx.fill();
     ctx.closePath;
 };
 
