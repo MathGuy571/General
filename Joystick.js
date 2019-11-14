@@ -9,6 +9,7 @@ class Joystick {
         
         this.down = false;
         this.nv = new Vector(0, 0);
+        this.maxMove = 3; //max movement speed
     }
     
     start(e) {
@@ -32,8 +33,7 @@ class Joystick {
         //normalise the vector
         this.nv.norm();
         //scale the normalised vector according to joystick distance from joypad center
-        let maxMove = 3; //max movement speed
-        let mapedDist = map(dist, 0, this.pr, 0, maxMove);
+        let mapedDist = map(dist, 0, this.pr, 0, this.maxMove);
         this.nv.scale(mapedDist);
     }
     
