@@ -26,6 +26,13 @@ const circle = (x, y, r, color, stroke=true, width=1) => {
     ctx.closePath();
 };
 
+const ellipse = (x, y, fx1, fy1, θ1, θ2, θ3) => {
+    ctx.beginPath();
+    ctx.ellipse(x, y, fx1, fy1, θ1, θ2, θ3);
+    ctx.stroke();
+    ctx.closePath;
+};
+
 const map = (v, vmin, vmax, mvMin, mvMax) => {
     let a = (mvMax - mvMin) / (vmax - vmin);
     let b = v - vmin;
