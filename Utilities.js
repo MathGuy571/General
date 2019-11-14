@@ -26,9 +26,9 @@ const circle = (x, y, r, color, stroke=true, width=1) => {
     ctx.closePath();
 };
 
-const ellipse = (x, y, fx1, fy1, θ1, θ2, θ3) => {
+const ellipse = (x, y, rx, ry, rot, θs, θe) => {
     ctx.beginPath();
-    ctx.ellipse(x, y, fx1, fy1, θ1, θ2, θ3);
+    ctx.ellipse(x, y, rx, ry, rot, θs, θe);
     ctx.stroke();
     ctx.closePath;
 };
