@@ -16,9 +16,9 @@ const line = (x1, y1, x2, y2, color, width=1) => {
     ctx.closePath();
 };
 
-const circle = (x, y, r, color, stroke=true, width=1) => {
+const circle = (x, y, r, θ1=0, θ2=2*PI, color, stroke=true, width=1) => {
     ctx.beginPath();
-    ctx.arc(x, y, r, 0, 2*π);
+    ctx.arc(x, y, r, θ1, θ2);
     ctx.strokeStyle = color;
     ctx.fillStyle = color;
     ctx.lineWidth = width;
@@ -26,9 +26,9 @@ const circle = (x, y, r, color, stroke=true, width=1) => {
     ctx.closePath();
 };
 
-const ellipse = (x, y, rx, ry, rot, color, stroke=true, width=1) => {
+const ellipse = (x, y, rx, ry, rot, θ1=0, θ2=2*PI, color, stroke=true, width=1) => {
     ctx.beginPath();
-    ctx.ellipse(x, y, rx, ry, rot, 0, 2*π);
+    ctx.ellipse(x, y, rx, ry, rot, θ1, θ2);
     ctx.strokeStyle = color;
     ctx.fillStyle = color;
     ctx.lineWidth = width;
