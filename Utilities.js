@@ -64,7 +64,7 @@ const setSize = (w, h, pd) => {
 
 const clear = () => ctx.clearRect(0, 0, W, H);
 
-const fill = (color) => {
+const fillClear = (color) => {
     ctx.fillStyle = color;
     ctx.fillRect(0, 0, W, H);
 };
