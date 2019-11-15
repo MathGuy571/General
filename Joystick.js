@@ -45,8 +45,8 @@ class Joystick {
     
     draw() {
         //joypad
-        circle(this.p.x, this.p.y, this.pr, "rgba(0, 100, 255, 0.6)", false);
+        circle(this.p.x, this.p.y, this.pr, 0, 2*Math.PI, 1, true, "rgba(0, 100, 255, 0.6)");
         //joystick
-        circle(this.s.x, this.s.y, this.sr, "rgba(255, 100, 0, 0.6)", false);
+        circle(this.s.x, this.s.y, this.sr, 0, 2*Math.PI, 1, true, "rgba(255, 100, 0, 0.6)");
     }
 }
