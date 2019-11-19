@@ -22,7 +22,7 @@ class Vector {
     }
     
     magn() {
-        return hypot(this.x, this.y);
+        return Math.hypot(this.x, this.y);
     }
     
     norm() {
