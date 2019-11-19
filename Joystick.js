@@ -52,7 +52,7 @@ class Joystick {
         ctx.closePath();
         //joystick
         ctx.beginPath();
-        ctx.arc(this.p.x, this.p.y, this.pr, 0, 2*Math.PI);
+        ctx.arc(this.s.x, this.s.y, this.sr, 0, 2*Math.PI);
         ctx.fillStyle = "rgba(255, 100, 0, 0.6)";
         ctx.fill();
         ctx.closePath();
