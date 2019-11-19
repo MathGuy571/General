@@ -45,8 +45,16 @@ class Joystick {
     
     draw() {
         //joypad
-        circle(this.p.x, this.p.y, this.pr, 0, 2*Math.PI, 1, false, "rgba(0, 100, 255, 0.6)");
+        ctx.beginPath();
+        ctx.arc(this.p.x, this.p.y, this.pr, 0, 2*Math.PI);
+        ctx.fillStyle = "rgba(0, 100, 255, 0.6)";
+        ctx.fill();
+        ctx.closePath();
         //joystick
-        circle(this.s.x, this.s.y, this.sr, 0, 2*Math.PI, 1, false, "rgba(255, 100, 0, 0.6)");
+        ctx.beginPath();
+        ctx.arc(this.p.x, this.p.y, this.pr, 0, 2*Math.PI);
+        ctx.fillStyle = "rgba(255, 100, 0, 0.6)";
+        ctx.fill();
+        ctx.closePath();
     }
 }
