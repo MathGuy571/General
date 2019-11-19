@@ -22,10 +22,10 @@ class Joystick {
         this.s.y = e.touches[0].clientY;
         
         //contain joystick within joypad
-        let dist = min(hypot(this.s.x - this.p.x, this.s.y - this.p.y), this.pr);
-        let θ = atan2(this.s.y - this.p.y, this.s.x - this.p.x);
-        this.s.x = this.p.x + dist * cos(θ);
-        this.s.y = this.p.y + dist * sin(θ);
+        let dist = Math.min(Math.hypot(this.s.x - this.p.x, this.s.y - this.p.y), this.pr);
+        let θ = Math.atan2(this.s.y - this.p.y, this.s.x - this.p.x);
+        this.s.x = this.p.x + dist * Math.cos(θ);
+        this.s.y = this.p.y + dist * Math.sin(θ);
         
         //convert user input to player movement
         this.nv.x = this.s.x - this.p.x;
