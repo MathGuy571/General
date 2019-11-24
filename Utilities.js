@@ -62,9 +62,9 @@ const setSize = (w, h, pd) => {
     c.height = H = h * pd;
 };
 
-const clear = () => ctx.clearRect(0, 0, W, H);
+const clear = (tw, th) => ctx.clearRect(tw, th, W, H);
 
-const fillClear = (color) => {
+const fillClear = (tw, th, color) => {
     ctx.fillStyle = color;
-    ctx.fillRect(0, 0, W, H);
+    ctx.fillRect(tw, th, W, H);
 };
