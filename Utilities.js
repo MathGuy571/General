@@ -3,7 +3,7 @@ const random = (max=1, min=0) => Math.random()*(max-min) + min;
 const calcFPS = () => {
     let timeDiff = Date.now() - lastTimeCalled;
     lastTimeCalled = Date.now();
-    fps.innerText = `fps: ${round(1000/timeDiff)}`;
+    fps.innerText = `fps: ${Math.round(1000/timeDiff)}`;
 };
 
 const line = (x1, y1, x2, y2, color, width=1) => {
