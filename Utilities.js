@@ -36,12 +36,17 @@ const ellipse = (x, y, rx, ry, rot, θ1=0, θ2=2*Math.PI, width=1, stroke=true, 
     ctx.closePath;
 };
 
-const text = (msg, x, y, size, font, color="black") => {
+const text = (msg, x, y, angle, size, font, color="black") => {
     let s = size+"px";
     let f = " "+font;
     ctx.font = s + f;
     ctx.fillStyle = color;
+
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(angle);
     ctx.fillText(msg, x, y);
+    ctx.restore();
 };
 
 const map = (v, vmin, vmax, mvMin, mvMax) => {
