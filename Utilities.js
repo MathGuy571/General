@@ -28,6 +28,7 @@ const circle = (x, y, r, θ1=0, θ2=2*Math.PI, width=1, stroke=true, color="rgb(
 const circularSector = (x, y, r, θ1, θ2, width=1, stroke=true, color="rgb(0, 0, 0)") => {
     if(stroke) {
         circle(x, y, r, θ1, θ2, width, stroke, color);
+        
         ctx.save();
         ctx.translate(x, y);
         line(0, 0, r*Math.cos(θ1), r*Math.sin(θ1), pd, color);
