@@ -33,7 +33,7 @@ const triangle = (x1, y1, x2, y2, x3, y3, width=1, stroke=true, color="rgb(0, 0,
     ctx.strokeStyle = ctx.fillStyle = color;
     ctx.lineWidth = width;
     ctx.closePath();
-    stroke? ctx.fill() : ctx.stroke();
+    stroke? ctx.stroke() : ctx.fill();
 };
 
 const ellipse = (x, y, rx, ry, rot, θ1=0, θ2=2*Math.PI, width=1, stroke=true, color="rgb(0, 0, 0)") => {
