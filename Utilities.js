@@ -45,7 +45,7 @@ const text = (msg, x, y, angle, size, font, color="black") => {
     ctx.save();
     ctx.translate(x, y);
     ctx.rotate(angle);
-    ctx.fillText(msg, x, y);
+    ctx.fillText(msg, 0, 0);
     ctx.restore();
 };
 
