@@ -6,7 +6,7 @@ const calcFPS = () => {
     fps.innerText = `fps: ${Math.round(1000/timeDiff)}`;
 };
 
-const line = (x1, y1, x2, y2, color, width=1) => {
+const line = (x1, y1, x2, y2, width=1, color="rgb(0, 0, 0)") => {
     ctx.beginPath();
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
@@ -54,7 +54,7 @@ const ellipse = (x, y, rx, ry, rot, θ1=0, θ2=2*Math.PI, width=1, stroke=true, 
     ctx.closePath;
 };
 
-const text = (msg, x, y, angle, size, font, color="black") => {
+const text = (msg, x, y, angle, size, font, color="rgb(0, 0, 0)") => {
     let s = size+"px";
     let f = " "+font;
     ctx.font = s + f;
@@ -95,7 +95,7 @@ const setSize = (w, h, pd) => {
 
 const clear = (tw=0, th=0) => ctx.clearRect(tw, th, W, H);
 
-const fillClear = (tw=0, th=0, color) => {
+const fillClear = (tw=0, th=0, color="rgb(255, 255, 255)") => {
     ctx.fillStyle = color;
     ctx.fillRect(tw, th, W, H);
 };
