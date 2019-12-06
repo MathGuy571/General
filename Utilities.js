@@ -25,6 +25,15 @@ const circle = (x, y, r, θ1=0, θ2=2*Math.PI, width=1, stroke=true, color="rgb(
     ctx.closePath();
 };
 
+const circularSector = (x, y, r, θ1, θ2, width, stroke, color) => {
+    circle(x, y, r, θ1, θ2, width, stroke, color);
+    
+    ctx.save();
+    ctx.translate(x, y);
+    triangle(0, 0, r*Math.cos(θ1), r*Math.sin(θ1), r*Math.cos(θ2), r*Math.sin(θ2), width, stroke, color);
+    ctx.restore();
+};
+
 const triangle = (x1, y1, x2, y2, x3, y3, width=1, stroke=true, color="rgb(0, 0, 0)") => {
     ctx.beginPath();
     ctx.moveTo(x1, y1);
