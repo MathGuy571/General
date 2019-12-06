@@ -19,18 +19,27 @@ const line = (x1, y1, x2, y2, color, width=1) => {
 const circle = (x, y, r, θ1=0, θ2=2*Math.PI, width=1, stroke=true, color="rgb(0, 0, 0)") => {
     ctx.beginPath();
     ctx.arc(x, y, r, θ1, θ2);
-    ctx.strokeStyle = color;
-    ctx.fillStyle = color;
+    ctx.strokeStyle = ctx.fillStyle = color;
     ctx.lineWidth = width;
     stroke? ctx.stroke() : ctx.fill();
     ctx.closePath();
 };
 
+const triangle = (x1, y1, x2, y2, x3, y3, width=1, stroke=true, color="rgb(0, 0, 0)") => {
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.lineTo(x3, y3);
+    ctx.strokeStyle = ctx.fillStyle = color;
+    ctx.lineWidth = width;
+    ctx.closePath();
+    fill? ctx.fill() : ctx.stroke();
+};
+
 const ellipse = (x, y, rx, ry, rot, θ1=0, θ2=2*Math.PI, width=1, stroke=true, color="rgb(0, 0, 0)") => {
     ctx.beginPath();
     ctx.ellipse(x, y, rx, ry, rot, θ1, θ2);
-    ctx.strokeStyle = color;
-    ctx.fillStyle = color;
+    ctx.strokeStyle = ctx.fillStyle = color;
     ctx.lineWidth = width;
     stroke? ctx.stroke() : ctx.fill();
     ctx.closePath;
