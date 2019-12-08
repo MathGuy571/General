@@ -50,7 +50,7 @@ const equivAngle = (θ) => {
     }
     else if(θ > (2*Math.PI)) {
         return θ % (2*Math.PI);
-    } else if(θ < 0 && θ> -2*Math.PI) {
+    } else if(θ < 0 && θ > -2*Math.PI) {
         return 2*Math.PI - (-θ);
     } else if(θ < (-2*Math.PI)) {
         return 2*Math.PI - ((-θ) % (2*Math.PI));
