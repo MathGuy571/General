@@ -44,6 +44,17 @@ const circularSector = (x, y, r, θ1, θ2, width=1, stroke=true, color="rgb(0, 0
     }
 };
 
+const equivAngle = (θ) => {
+    if(0 <= θ && θ <= (2*Math.PI)) {
+        return θ;
+    }
+    else if(θ > (2*Math.PI)) {
+        return θ % (2*Math.PI);
+    } else if(θ < (-2*Math.PI)) {
+        return 2*Math.PI - ((-θ) % (2*Math.PI));
+    }
+};
+
 const triangle = (x1, y1, x2, y2, x3, y3, width=1, stroke=true, color="rgb(0, 0, 0)") => {
     ctx.beginPath();
     ctx.moveTo(x1, y1);
