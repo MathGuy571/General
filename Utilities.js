@@ -28,19 +28,12 @@ const circle = (x, y, r, θ1=0, θ2=2*Math.PI, width=1, stroke=true, color="rgb(
 const circularSector = (x, y, r, θ1, θ2, width=1, stroke=true, color="rgb(0, 0, 0)") => {
     if(stroke) {
         circle(x, y, r, θ1, θ2, width, stroke, color);
-        
-        ctx.save();
-        ctx.translate(x, y);
-        line(0, 0, r*Math.cos(θ1), r*Math.sin(θ1), pd, color);
-        line(0, 0, r*Math.cos(θ2), r*Math.sin(θ2), pd, color);
-        ctx.restore();
+
+        line(x, y, x + r*Math.cos(θ1), y + r*Math.sin(θ1), pd, color);
+        line(x, y, x + r*Math.cos(θ2), y + r*Math.sin(θ2), pd, color);
     } else {
         circle(x, y, r, θ1, θ2, width, stroke, color);
-    
-        ctx.save();
-        ctx.translate(x, y);
-        triangle(0, 0, r*Math.cos(θ1), r*Math.sin(θ1), r*Math.cos(θ2), r*Math.sin(θ2), width, stroke, color);
-        ctx.restore();
+        triangle(x, y, x + r*Math.cos(θ1), y + r*Math.sin(θ1), x + r*Math.cos(θ2),  y + r*Math.sin(θ2), width, stroke, color); 
     }
 };
 
