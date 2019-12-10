@@ -26,14 +26,38 @@ const circle = (x, y, r, θ1=0, θ2=2*Math.PI, width=1, stroke=true, color="rgb(
 };
 
 const circularSector = (x, y, r, θ1, θ2, width=1, stroke=true, color="rgb(0, 0, 0)") => {
-    if(stroke) {
-        circle(x, y, r, θ1, θ2, width, stroke, color);
+    //convert the angles to their equivalents within [0, 2π]
+    θ1 = equivAngle(θ1);
+    θ2 = equivAngle(θ2);
+    
+    //swap them if necessary
+    if(θ1>θ2) {
+        let temp = θ1;
+        θ1 = θ2
+        θ2 = temp;  
+    }
+    
+    if(θ2 - θ1 <= Math.PI) {
+        if(stroke) {
+            circle(x, y, r, θ1, θ2, width, stroke, color);
 
-        line(x, y, x + r*Math.cos(θ1), y + r*Math.sin(θ1), pd, color);
-        line(x, y, x + r*Math.cos(θ2), y + r*Math.sin(θ2), pd, color);
+            line(x, y, x + r*Math.cos(θ1), y + r*Math.sin(θ1), pd, color);
+            line(x, y, x + r*Math.cos(θ2), y + r*Math.sin(θ2), pd, color);
+        } else {
+            circle(x, y, r, θ1, θ2, width, stroke, color);
+            triangle(x, y, x + r*Math.cos(θ1), y + r*Math.sin(θ1), x + r*Math.cos(θ2),  y + r*Math.sin(θ2), width, stroke, color); 
+        }
     } else {
-        circle(x, y, r, θ1, θ2, width, stroke, color);
-        triangle(x, y, x + r*Math.cos(θ1), y + r*Math.sin(θ1), x + r*Math.cos(θ2),  y + r*Math.sin(θ2), width, stroke, color); 
+        if(stroke) {
+            circle(x, y, r, θ1, θ2, width, stroke, color);
+
+            line(x, y, x + r*Math.cos(θ1), y + r*Math.sin(θ1), pd, color);
+            line(x, y, x + r*Math.cos(θ2), y + r*Math.sin(θ2), pd, color);
+        } else {
+            circle(x, y, r, θ1, θ1 + Math.PI, width, stroke, color);
+            circle(x, y, r, θ1 + Math.PI, θ2, width, stroke, color);
+            triangle(x, y, x + r*Math.cos(θ1 + Math.PI), y + r*Math.sin(θ1 + Math.PI), x + r*Math.cos(θ2),  y + r*Math.sin(θ2), width, stroke, color);
+        }
     }
 };
 
