@@ -37,26 +37,53 @@ const circularSector = (x, y, r, θ1, θ2, width=1, stroke=true, color="rgb(0, 0
         θ2 = temp;  
     }
     
+    ctx.lineWidth = width;
+    ctx.strokeStyle = ctx.fillStyle = color;
+    
     if(θ2 - θ1 <= Math.PI) {
         if(stroke) {
-            circle(x, y, r, θ1, θ2, width, stroke, color);
-
-            line(x, y, x + r*Math.cos(θ1), y + r*Math.sin(θ1), width, color);
-            line(x, y, x + r*Math.cos(θ2), y + r*Math.sin(θ2), width, color);
+            ctx.beginPath();
+            ctx.arc(x, y, r, θ1, θ2);
+            
+            ctx.moveTo(x, y);
+            ctx.lineTo(x + r*Math.cos(θ1), y + r*Math.sin(θ1));
+            ctx.moveTo(x, y);
+            ctx.lineTo(x + r*Math.cos(θ2), y + r*Math.sin(θ2));
+            ctx.closePath();
+            ctx.stroke();
         } else {
-            circle(x, y, r, θ1, θ2, width, stroke, color);
-            triangle(x, y, x + r*Math.cos(θ1), y + r*Math.sin(θ1), x + r*Math.cos(θ2),  y + r*Math.sin(θ2), width, stroke, color); 
+            ctx.beginPath();
+            ctx.arc(x, y, r, θ1, θ2);
+            ctx.moveTo(x, y);
+            ctx.lineTo(x + r*Math.cos(θ1), y + r*Math.sin(θ1));
+            ctx.lineTo(x + r*Math.cos(θ2), y + r*Math.sin(θ2));
+            ctx.closePath();
+            ctx.fill(); 
         }
     } else {
         if(stroke) {
-            circle(x, y, r, θ1, θ2, width, stroke, color);
-
-            line(x, y, x + r*Math.cos(θ1), y + r*Math.sin(θ1), width, color);
-            line(x, y, x + r*Math.cos(θ2), y + r*Math.sin(θ2), width, color);
+            ctx.beginPath();
+            ctx.arc(x, y, r, θ1, θ2);
+            
+            ctx.moveTo(x, y);
+            ctx.lineTo(x + r*Math.cos(θ1), y + r*Math.sin(θ1));
+            ctx.moveTo(x, y);
+            ctx.lineTo(x + r*Math.cos(θ2), y + r*Math.sin(θ2));
+            ctx.closePath();
+            ctx.stroke();
         } else {
-            circle(x, y, r, θ1, θ1 + Math.PI, width, stroke, color);
-            circle(x, y, r, θ1 + Math.PI, θ2, width, stroke, color);
-            triangle(x, y, x + r*Math.cos(θ1 + Math.PI), y + r*Math.sin(θ1 + Math.PI), x + r*Math.cos(θ2),  y + r*Math.sin(θ2), width, stroke, color);
+            ctx.beginPath();
+            ctx.arc(x, y, r, θ1, θ1 + Math.PI+ Math.PI/720/*magic*/);
+            ctx.fill();
+            
+            
+            ctx.beginPath();
+            ctx.arc(x, y, r, θ1 + Math.PI, θ2);
+            ctx.moveTo(x, y);
+            ctx.lineTo(x + r*Math.cos(θ1 + Math.PI), y + r*Math.sin(θ1 + Math.PI));
+            ctx.lineTo(x + r*Math.cos(θ2),  y + r*Math.sin(θ2));
+            ctx.closePath();
+            ctx.fill();
         }
     }
 };
