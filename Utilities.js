@@ -76,7 +76,6 @@ const circularSector = (x, y, r, θ1, θ2, width=1, stroke=true, color="rgb(0, 0
             ctx.arc(x, y, r, θ1, θ1 + Math.PI + Math.PI/720 /* <-- math magic*/);
             ctx.fill();
             
-            
             ctx.beginPath();
             ctx.arc(x, y, r, θ1 + Math.PI, θ2);
             ctx.moveTo(x, y);
