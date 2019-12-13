@@ -25,7 +25,7 @@ const circle = (x, y, r, θ1=0, θ2=2*Math.PI, width=1, stroke=true, color="rgb(
     ctx.closePath();
 };
 
-const circularSector2 = (x, y, r, θ1, θ2, width=1, stroke=true, color="rgb(0, 0, 0)") => {
+const circularSector = (x, y, r, θ1, θ2, width=1, stroke=true, color="rgb(0, 0, 0)") => {
     //convert the angles to their equivalents within [0, 2π]
     θ1 = equivAngle(θ1);
     θ2 = equivAngle(θ2);
