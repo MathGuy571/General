@@ -25,7 +25,7 @@ const circle = (x, y, r, θ1=0, θ2=2*Math.PI, width=1, stroke=true, color="rgb(
     ctx.closePath();
 };
 
-const circularSector = (x, y, r, θ1, θ2, width=1, stroke=true, color="rgb(0, 0, 0)") => {
+const circularSector2 = (x, y, r, θ1, θ2, width=1, stroke=true, color="rgb(0, 0, 0)") => {
     //convert the angles to their equivalents within [0, 2π]
     θ1 = equivAngle(θ1);
     θ2 = equivAngle(θ2);
@@ -43,19 +43,17 @@ const circularSector = (x, y, r, θ1, θ2, width=1, stroke=true, color="rgb(0, 0
     if(θ2 - θ1 <= Math.PI) {
         if(stroke) {
             ctx.beginPath();
-            ctx.arc(x, y, r, θ1, θ2);
-            
             ctx.moveTo(x, y);
             ctx.lineTo(x + r*Math.cos(θ1), y + r*Math.sin(θ1));
-            ctx.moveTo(x, y);
+            ctx.arc(x, y, r, θ1, θ2);
             ctx.lineTo(x + r*Math.cos(θ2), y + r*Math.sin(θ2));
             ctx.closePath();
             ctx.stroke();
         } else {
             ctx.beginPath();
-            ctx.arc(x, y, r, θ1, θ2);
             ctx.moveTo(x, y);
             ctx.lineTo(x + r*Math.cos(θ1), y + r*Math.sin(θ1));
+            ctx.arc(x, y, r, θ1, θ2);
             ctx.lineTo(x + r*Math.cos(θ2), y + r*Math.sin(θ2));
             ctx.closePath();
             ctx.fill(); 
@@ -63,23 +61,18 @@ const circularSector = (x, y, r, θ1, θ2, width=1, stroke=true, color="rgb(0, 0
     } else {
         if(stroke) {
             ctx.beginPath();
-            ctx.arc(x, y, r, θ1, θ2);
-            
             ctx.moveTo(x, y);
             ctx.lineTo(x + r*Math.cos(θ1), y + r*Math.sin(θ1));
-            ctx.moveTo(x, y);
+            ctx.arc(x, y, r, θ1, θ2);
             ctx.lineTo(x + r*Math.cos(θ2), y + r*Math.sin(θ2));
             ctx.closePath();
             ctx.stroke();
         } else {
             ctx.beginPath();
-            ctx.arc(x, y, r, θ1, θ1 + Math.PI + Math.PI/5760/* <-- math magic*/);
-            ctx.fill();
-            
-            ctx.beginPath();
-            ctx.arc(x, y, r, θ1 + Math.PI, θ2);
             ctx.moveTo(x, y);
             ctx.lineTo(x + r*Math.cos(θ1 + Math.PI), y + r*Math.sin(θ1 + Math.PI));
+            ctx.arc(x, y, r, θ1, θ1 + Math.PI);
+            ctx.arc(x, y, r, θ1 + Math.PI, θ2);
             ctx.lineTo(x + r*Math.cos(θ2),  y + r*Math.sin(θ2));
             ctx.closePath();
             ctx.fill();
