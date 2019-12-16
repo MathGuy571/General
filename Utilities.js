@@ -150,9 +150,13 @@ const setSize = (w, h, pd) => {
     c.height = H = h * pd;
 };
 
-const clear = () => ctx.clearRect(0, 0, W, H);
-
-const fillClear = (color="rgb(255, 255, 255)") => {
-    ctx.fillStyle = color;
+const clear = (color) => {
+    if(color == null) {
+        let body = document.getElementsByTagName("BODY")[0];
+        let objProp = window.getComputedStyle(body);
+        color = objProp.getPropertyValue("background-color");
+    }
+    
+    ctx.fillStyle = color; 
     ctx.fillRect(0, 0, W, H);
 };
