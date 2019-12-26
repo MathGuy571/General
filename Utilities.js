@@ -157,12 +157,10 @@ const setSize = (w, h, pd) => {
 };
 
 const clear = (color) => {
-    if(color == null) {
-        let body = document.getElementsByTagName("BODY")[0];
-        let objProp = window.getComputedStyle(body);
-        color = objProp.getPropertyValue("background-color");
+    if (color == null) {
+        ctx.clearRect(0, 0, W, H);
+    } else {
+        ctx.fillStyle = color;
+        ctx.fillRect(0, 0, W, H);
     }
-    
-    ctx.fillStyle = color; 
-    ctx.fillRect(0, 0, W, H);
 };
