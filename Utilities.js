@@ -140,14 +140,20 @@ const sp = () => {
     }
 };
 
-const setSize = (w, h, pd) => {
+const setSize2 = (w, h, pd) => {
     //canvas apparent size
     c.style.width = `${w}px`;
     c.style.height = `${h}px`;
     
     //canvas actual size
-    c.width = W = w * pd;
-    c.height = H = h * pd;
+    c.width = w * pd;
+    c.height = h * pd;
+    
+    //set global Width & Height as apparent width & height
+    W = w, H = h;
+    
+    //normalise coordinates
+    ctx.scale(pd, pd);
 };
 
 const clear = (color) => {
