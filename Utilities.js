@@ -140,7 +140,7 @@ const sp = () => {
     }
 };
 
-const setSize2 = (w, h, pd) => {
+const setSize = (w, h, pd) => {
     //canvas apparent size
     c.style.width = `${w}px`;
     c.style.height = `${h}px`;
