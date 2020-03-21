@@ -6,26 +6,22 @@ const calcFPS = () => {
     fps.innerText = `fps: ${Math.round(1000/timeDiff)}`;
 };
 
-const line = (x1, y1, x2, y2, width=1, color="rgb(0, 0, 0)") => {
+const line = (x1, y1, x2, y2) => {
     ctx.beginPath();
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
-    ctx.strokeStyle = color;
-    ctx.lineWidth = width;
     ctx.stroke();
     ctx.closePath();
 };
 
-const circle = (x, y, r, θ1=0, θ2=2*Math.PI, width=1, stroke=true, color="rgb(0, 0, 0)") => {
+const circle = (x, y, r, θ1=0, θ2=2*Math.PI, stroke=true) => {
     ctx.beginPath();
     ctx.arc(x, y, r, θ1, θ2);
-    ctx.strokeStyle = ctx.fillStyle = color;
-    ctx.lineWidth = width;
     stroke? ctx.stroke() : ctx.fill();
     ctx.closePath();
 };
 
-const circularSector = (x, y, r, θ1, θ2, width=1, stroke=true, color="rgb(0, 0, 0)") => {
+const circularSector = (x, y, r, θ1, θ2, stroke=true) => {
     //convert the angles to their equivalents within [0, 2π]
     θ1 = equivAngle(θ1);
     θ2 = equivAngle(θ2);
@@ -36,9 +32,6 @@ const circularSector = (x, y, r, θ1, θ2, width=1, stroke=true, color="rgb(0, 0
         θ1 = θ2
         θ2 = temp;  
     }
-    
-    ctx.lineWidth = width;
-    ctx.strokeStyle = ctx.fillStyle = color;
     
     if(θ2 - θ1 <= Math.PI) {
         if(stroke) {
@@ -91,22 +84,18 @@ const equivAngle = (θ) => {
     }
 };
 
-const triangle = (x1, y1, x2, y2, x3, y3, width=1, stroke=true, color="rgb(0, 0, 0)") => {
+const triangle = (x1, y1, x2, y2, x3, y3, stroke=true) => {
     ctx.beginPath();
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
     ctx.lineTo(x3, y3);
-    ctx.strokeStyle = ctx.fillStyle = color;
-    ctx.lineWidth = width;
     ctx.closePath();
     stroke? ctx.stroke() : ctx.fill();
 };
 
-const ellipse = (x, y, rx, ry, rot, θ1=0, θ2=2*Math.PI, width=1, stroke=true, color="rgb(0, 0, 0)") => {
+const ellipse = (x, y, rx, ry, rot, θ1=0, θ2=2*Math.PI, stroke=true) => {
     ctx.beginPath();
     ctx.ellipse(x, y, rx, ry, rot, θ1, θ2);
-    ctx.strokeStyle = ctx.fillStyle = color;
-    ctx.lineWidth = width;
     stroke? ctx.stroke() : ctx.fill();
     ctx.closePath;
 };
