@@ -29,7 +29,7 @@ const circularSector = (x, y, r, θ1, θ2, stroke=true) => {
     //swap them if necessary
     if(θ1>θ2) {
         let temp = θ1;
-        θ1 = θ2
+        θ1 = θ2;
         θ2 = temp;  
     }
     
