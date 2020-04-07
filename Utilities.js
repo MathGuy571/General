@@ -138,18 +138,24 @@ const setSize = (w, h, pd) => {
     c.width = w * pd;
     c.height = h * pd;
     
-    //set global Width & Height as apparent width & height
-    W = w, H = h;
+    //set global Width & Height as actual width & height
+    W = w * pd, H = h * pd;
     
     //normalise coordinates
     ctx.scale(pd, pd);
 };
 
 const clear = (color) => {
+    //get previous canvas transformation matrix
+    let previousTransform = ctx.getTransform();
+    //reset canvas transform state
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
     if (color == null) {
-        ctx.clearRect(0, 0, W, H);
+        ctx.clearRect(0, 0, c.width, c.height);
     } else {
         ctx.fillStyle = color;
-        ctx.fillRect(0, 0, W, H);
+        ctx.fillRect(0, 0, c.width, c.height);
     }
+    //reset canvas transform state
+    ctx.setTransform(previousTransform);
 };
