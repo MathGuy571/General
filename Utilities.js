@@ -138,8 +138,8 @@ const setSize = (w, h, pd) => {
     c.width = w * pd;
     c.height = h * pd;
     
-    //set global Width & Height as actual width & height
-    W = w * pd, H = h * pd;
+    //set global Width & Height as apparent width & height
+    W = w, H = h;
     
     //normalise coordinates
     ctx.scale(pd, pd);
