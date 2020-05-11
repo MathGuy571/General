@@ -1,9 +1,28 @@
 const random = (max=1, min=0) => Math.random()*(max-min) + min;
 
-const calcFPS = () => {
-    let timeDiff = Date.now() - lastTimeCalled;
-    lastTimeCalled = Date.now();
-    fps.innerText = `fps: ${Math.round(1000/timeDiff)}`;
+class FpsDiv {
+    constructor(top, left, color) {
+        this.div = document.createElement("div");
+        //set id
+        this.div.id = "Fps";
+        //set style
+        this.div.style.position = "absolute";
+        this.div.style.top = top;
+        this.div.style.left = left;
+        this.div.style.color = color;
+        //set creation timestamp
+        this.time = Date.now();
+        //append fps div to body
+        let body = document.getElementsByTagName("BODY")[0];
+        body.appendChild(this.div);
+    }
+    
+    calc() {
+        let dt = Date.now() - this.time;
+        this.time = Date.now();
+        let fps = document.getElementById("Fps");
+        fps.innerText = `fps: ${Math.round(1000/dt)}`;
+    }
 };
 
 const line = (x1, y1, x2, y2) => {
