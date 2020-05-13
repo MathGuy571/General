@@ -18,10 +18,9 @@ class FpsDiv {
     }
     
     calc() {
-        let dt = Date.now() - this.time;
-        this.time = Date.now();
-        let fps = document.getElementById("Fps");
-        fps.innerText = `fps: ${Math.round(1000/dt)}`;
+        let dt = Date.now() - this.time; 
+        this.time = Date.now(); 
+        this.div.innerText = `fps: ${Math.round(1000/dt)}`;
     }
 };
 
