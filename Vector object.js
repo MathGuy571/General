@@ -20,6 +20,10 @@ class Vector {
         this.x *= n;
         this.y *= n;
     }
+
+    angle() {
+        return Math.Atan2(this.y, this.x);
+    }
     
     magn() {
         return Math.hypot(this.x, this.y);
