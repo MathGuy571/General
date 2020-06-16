@@ -18,8 +18,8 @@ class FpsDiv {
     }
     
     calc() { 
-        let dt = Date.now() - this.time; 
-        this.time = Date.now(); 
+        let dt = performance.now() - this.time; 
+        this.time = performance.now(); 
         this.div.innerText = `fps: ${Math.round(1000/dt)}`;
     }
 };
