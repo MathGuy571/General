@@ -131,6 +131,20 @@ const text = (msg, x, y, angle, size, font, color="rgb(0, 0, 0)") => {
     ctx.restore();
 };
 
+const drawAxes = (color) => {
+    //get previous canvas transformation matrix
+    let previousTransform = ctx.getTransform(); 
+    //reset canvas transform state
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.strokeStyle = color;
+    //x-axis
+    line(0, c.height/2, c.width, c.height/2);
+    //y-axis
+    line(c.width/2, 0, c.width/2, c.height);
+    //set canvas transform state back to previous state
+    ctx.setTransform(previousTransform);
+};
+
 const map = (v, vmin, vmax, mvMin, mvMax) => {
     let a = (mvMax - mvMin) / (vmax - vmin);
     let b = v - vmin;
