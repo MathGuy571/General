@@ -131,11 +131,12 @@ const text = (msg, x, y, angle, size, font, color="rgb(0, 0, 0)") => {
     ctx.restore();
 };
 
-const drawAxes = (color) => {
+const drawAxes = (color, pd) => {
     //get previous canvas transformation matrix
     let previousTransform = ctx.getTransform(); 
     //reset canvas transform state
     ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.lineWidth = pd;
     ctx.strokeStyle = color;
     //x-axis
     line(0, c.height/2, c.width, c.height/2);
