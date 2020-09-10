@@ -52,35 +52,27 @@ const circularSector = (x, y, r, θ1, θ2, stroke=true) => {
     }
     
     if(θ2 - θ1 <= Math.PI) {
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x + r * Math.cos(θ1), y + r * Math.sin(θ1));
+        ctx.arc(x, y, r, θ1, θ2);
+        ctx.lineTo(x + r * Math.cos(θ2), y + r * Math.sin(θ2));
+        ctx.closePath();
         if(stroke) {
-            ctx.beginPath();
-            ctx.moveTo(x, y);
-            ctx.lineTo(x + r*Math.cos(θ1), y + r*Math.sin(θ1));
-            ctx.arc(x, y, r, θ1, θ2);
-            ctx.lineTo(x + r*Math.cos(θ2), y + r*Math.sin(θ2));
-            ctx.closePath();
             ctx.stroke();
         } else {
-            ctx.beginPath();
-            ctx.moveTo(x, y);
-            ctx.lineTo(x + r*Math.cos(θ1), y + r*Math.sin(θ1));
-            ctx.arc(x, y, r, θ1, θ2);
-            ctx.lineTo(x + r*Math.cos(θ2), y + r*Math.sin(θ2));
-            ctx.closePath();
             ctx.fill(); 
         }
     } else {
+        ctx.beginPath();
+        ctx.moveTo(x, y);
         if(stroke) {
-            ctx.beginPath();
-            ctx.moveTo(x, y);
             ctx.lineTo(x + r*Math.cos(θ1), y + r*Math.sin(θ1));
             ctx.arc(x, y, r, θ1, θ2);
             ctx.lineTo(x + r*Math.cos(θ2), y + r*Math.sin(θ2));
             ctx.closePath();
             ctx.stroke();
         } else {
-            ctx.beginPath();
-            ctx.moveTo(x, y);
             ctx.lineTo(x + r*Math.cos(θ1 + Math.PI), y + r*Math.sin(θ1 + Math.PI));
             ctx.arc(x, y, r, θ1, θ1 + Math.PI);
             ctx.arc(x, y, r, θ1 + Math.PI, θ2);
