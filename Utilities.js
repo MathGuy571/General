@@ -45,7 +45,7 @@ const circularSector = (x, y, r, θ1, θ2, stroke=true) => {
     θ2 = equivAngle(θ2);
     
     //swap them if necessary
-    if(θ1>θ2) {
+    if(θ1 > θ2) {
         let temp = θ1;
         θ1 = θ2;
         θ2 = temp;  
@@ -58,10 +58,7 @@ const circularSector = (x, y, r, θ1, θ2, stroke=true) => {
         ctx.arc(x, y, r, θ1, θ2);
         ctx.lineTo(x + r*Math.cos(θ2), y + r*Math.sin(θ2));
         ctx.closePath();
-        if (stroke) {
-            ctx.stroke();
-        } else {
-            ctx.fill(); 
+        stroke? ctx.stroke() : ctx.fill(); 
         }
     } else {
         if(stroke) {
