@@ -58,8 +58,7 @@ const circularSector = (x, y, r, θ1, θ2, stroke=true) => {
         ctx.arc(x, y, r, θ1, θ2);
         ctx.lineTo(x + r*Math.cos(θ2), y + r*Math.sin(θ2));
         ctx.closePath();
-        stroke? ctx.stroke() : ctx.fill(); 
-        }
+        stroke? ctx.stroke() : ctx.fill();
     } else {
         if(stroke) {
             ctx.beginPath();
