@@ -32,34 +32,53 @@ const line = (x1, y1, x2, y2) => {
     ctx.closePath();
 };
 
-const circle = (x, y, r, θ1=0, θ2=2*Math.PI, stroke=true) => {
+/**
+ * draws a sector
+ *
+ * Usage:
+ *  circle({
+ *      pos         : <positon of sector>
+ *      r           : <radius>
+ *      rot         : <rotation>                           // default = 0
+ *      θ1          : <start angle>                        // default = 0
+ *      θ2          : <end angle>                          // default = 2*Math.PI
+ *      stroke      : <whether to stroke>                  // default = true
+ *      moveToCentre: <whether add a ctx.moveTo function>  // default = false
+ *  });
+ */
+const circle = (c) => {
     ctx.beginPath();
-    ctx.arc(x, y, r, θ1, θ2);
-    stroke? ctx.stroke() : ctx.fill();
+    if (c.moveToCentre) ctx.moveTo(c.pos[0], c.pos[1]);
+    ctx.arc(
+        c.pos[0], c.pos[1],
+        c.r,
+        c.θ1 || 0,
+        isNaN(c.θ2) ? Math.PI * 2: c.θ2);
     ctx.closePath();
+    c.stroke == undefined || c.stroke? ctx.stroke() : ctx.fill();
 };
 
-const circularSector = (x, y, r, θ1, θ2, stroke=true) => {
+/**
+ * draws a sector
+ * required data is same as required to circle
+ */
+const circularSector = (c) => {
     //convert the angles to their equivalents within [0, 2π]
-    θ1 = equivAngle(θ1);
-    θ2 = equivAngle(θ2);
+    c.θ1 = equivAngle(c.θ1);
+    c.θ2 = equivAngle(c.θ2);
 
     //swap them if necessary
-    if(θ1 > θ2) {
-        let temp = θ1;
-        θ1 = θ2;
-        θ2 = temp;  
+    if(c.θ1 > c.θ2) {
+        let temp = c.θ1;
+        c.θ1 = c.θ2;
+        c.θ2 = temp;
     }
-
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-    ctx.arc(x, y, r, θ1, θ2);
-    ctx.closePath();
-    stroke? ctx.stroke() : ctx.fill();
+    c.moveToCentre = true;
+    circle(c)
 };
 
 const equivAngle = (θ) => {
-    if(0 <= θ && θ <= (2*Math.PI)) {
+    if (0 <= θ && θ <= (2*Math.PI)) {
         return θ;
     }
     else if(θ > (2*Math.PI)) {
@@ -69,20 +88,47 @@ const equivAngle = (θ) => {
     }
 };
 
-const triangle = (x1, y1, x2, y2, x3, y3, stroke=true) => {
+
+/**
+ *
+ *
+ * @param {Array} p1 <position of 1ˢᵗ point>
+ * @param {Array} p2 <position of 2ⁿᵈ point>
+ * @param {Array} p3 <position of 3ʳᵈ point>
+ * @param {boolean} [stroke=true] whether to stroke
+ */
+const triangle = (p1, p2, p3, stroke=true) => {
     ctx.beginPath();
-    ctx.moveTo(x1, y1);
-    ctx.lineTo(x2, y2);
-    ctx.lineTo(x3, y3);
+    ctx.moveTo(p1[0], p1[1]);
+    ctx.lineTo(p2[0], p2[1]);
+    ctx.lineTo(p3[0], p3[1]);
     ctx.closePath();
     stroke? ctx.stroke() : ctx.fill();
 };
 
-const ellipse = (x, y, rx, ry, rot, θ1=0, θ2=2*Math.PI, stroke=true) => {
+/**
+ * draws an ellipse
+ * Usage:
+ *  ellipse({
+ *    pos    : <position of ellipse>
+ *    rx     : <x radius>
+ *    ry     : <y radius>
+ *    rot    : <rotation> // default = 0
+ *    θ1     : <start angle> // default = 0
+ *    θ2     : <end angle> // default = 2*Math.PI
+ *    stroke : <whether to stroke> // default = true
+ * });
+ */
+const ellipse = (c) => {
     ctx.beginPath();
-    ctx.ellipse(x, y, rx, ry, rot, θ1, θ2);
+    ctx.ellipse(
+        c.pos[0], c.pos[1],
+        c.rx, c.ry,
+        c.rot || 0,
+        c.θ1 || 0,
+        isNaN(c.θ2) ? Math.PI * 2: c.θ2);
     ctx.closePath();
-    stroke? ctx.stroke() : ctx.fill();
+    c.stroke == undefined || c.stroke? ctx.stroke() : ctx.fill();
 };
 
 /**
@@ -92,12 +138,12 @@ const ellipse = (x, y, rx, ry, rot, θ1=0, θ2=2*Math.PI, stroke=true) => {
  *      text: <your text>,
  *      x: <x_location>,
  *      y: <y_location>,
- *      size: <font-size>,
- *      font: <font-family>,
- *      color: <text-color>,
- *      angle: <rotation of text>,
- * 
+ *      size: <font-size>, //default : 20
+ *      font: <font-family>, // default: serif
+ *      color: <text-color>, // default: #000
+ *      angle: <rotation of text> // default: 0
  *  });
+ * @param {Object} c 
  * */
 const text = (c) => {
     var size = isNaN(c.size)? 20: c.size;
