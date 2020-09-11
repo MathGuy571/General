@@ -81,8 +81,8 @@ const triangle = (x1, y1, x2, y2, x3, y3, stroke=true) => {
 const ellipse = (x, y, rx, ry, rot, θ1=0, θ2=2*Math.PI, stroke=true) => {
     ctx.beginPath();
     ctx.ellipse(x, y, rx, ry, rot, θ1, θ2);
-    stroke? ctx.stroke() : ctx.fill();
     ctx.closePath();
+    stroke? ctx.stroke() : ctx.fill();
 };
 
 /**
