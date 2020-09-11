@@ -11,7 +11,7 @@ class FpsDiv {
         this.div.style.left = left; 
         this.div.style.color = color; 
         //set creation timestamp 
-        this.time = Date.now(); 
+        this.time = performance.now(); 
         //append fps div to body 
         let body = document.getElementsByTagName("BODY")[0]; 
         body.appendChild(this.div);
@@ -43,52 +43,19 @@ const circularSector = (x, y, r, θ1, θ2, stroke=true) => {
     //convert the angles to their equivalents within [0, 2π]
     θ1 = equivAngle(θ1);
     θ2 = equivAngle(θ2);
-    
+
     //swap them if necessary
-    if(θ1>θ2) {
+    if(θ1 > θ2) {
         let temp = θ1;
         θ1 = θ2;
         θ2 = temp;  
     }
-    
-    if(θ2 - θ1 <= Math.PI) {
-        if(stroke) {
-            ctx.beginPath();
-            ctx.moveTo(x, y);
-            ctx.lineTo(x + r * Math.cos(θ1), y + r * Math.sin(θ1));
-            ctx.arc(x, y, r, θ1, θ2);
-            ctx.lineTo(x + r * Math.cos(θ2), y + r * Math.sin(θ2));
-            ctx.closePath();
-            ctx.stroke();
-        } else {
-            ctx.beginPath();
-            ctx.moveTo(x, y);
-            ctx.lineTo(x + r * Math.cos(θ1), y + r * Math.sin(θ1));
-            ctx.arc(x, y, r, θ1, θ2);
-            ctx.lineTo(x + r * Math.cos(θ2), y + r * Math.sin(θ2));
-            ctx.closePath();
-            ctx.fill(); 
-        }
-    } else {
-        if(stroke) {
-            ctx.beginPath();
-            ctx.moveTo(x, y);
-            ctx.lineTo(x + r*Math.cos(θ1), y + r*Math.sin(θ1));
-            ctx.arc(x, y, r, θ1, θ2);
-            ctx.lineTo(x + r*Math.cos(θ2), y + r*Math.sin(θ2));
-            ctx.closePath();
-            ctx.stroke();
-        } else {
-            ctx.beginPath();
-            ctx.moveTo(x, y);
-            ctx.lineTo(x + r*Math.cos(θ1 + Math.PI), y + r*Math.sin(θ1 + Math.PI));
-            ctx.arc(x, y, r, θ1, θ1 + Math.PI);
-            ctx.arc(x, y, r, θ1 + Math.PI, θ2);
-            ctx.lineTo(x + r*Math.cos(θ2),  y + r*Math.sin(θ2));
-            ctx.closePath();
-            ctx.fill();
-        }
-    }
+
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.arc(x, y, r, θ1, θ2);
+    ctx.closePath();
+    stroke? ctx.stroke() : ctx.fill();
 };
 
 const equivAngle = (θ) => {
@@ -115,19 +82,36 @@ const ellipse = (x, y, rx, ry, rot, θ1=0, θ2=2*Math.PI, stroke=true) => {
     ctx.beginPath();
     ctx.ellipse(x, y, rx, ry, rot, θ1, θ2);
     stroke? ctx.stroke() : ctx.fill();
-    ctx.closePath;
+    ctx.closePath();
 };
 
-const text = (msg, x, y, angle, size, font, color="rgb(0, 0, 0)") => {
+/**
+ * Draws text on canvas
+ * Using:
+ *  text({
+ *      text: <your text>,
+ *      x: <x_location>,
+ *      y: <y_location>,
+ *      size: <font-size>,
+ *      font: <font-family>,
+ *      color: <text-color>,
+ *      angle: <rotation of text>,
+ * 
+ *  });
+ * */
+const text = (c) => {
+    var size = isNaN(c.size)? 20: c.size;
+    var font = c.font == undefined? "serif": c.font;
+
     let s = size+"px";
     let f = " "+font;
     ctx.font = s + f;
-    ctx.fillStyle = color;
+    ctx.fillStyle = c.color == undefined? "#000": c.color;;
 
     ctx.save();
-    ctx.translate(x, y);
-    ctx.rotate(angle);
-    ctx.fillText(msg, 0, 0);
+    ctx.translate(c.x, c.y);
+    ctx.rotate(isNaN(c.angle) ? 0: c.angle);
+    ctx.fillText(c.text, 0, 0);
     ctx.restore();
 };
 
