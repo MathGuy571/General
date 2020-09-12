@@ -33,11 +33,11 @@ const line = (x1, y1, x2, y2) => {
 };
 
 /**
- * draws a sector
+ * draws a circle
  *
  * Usage:
  *  circle({
- *      pos         : <positon of sector>
+ *      pos         : <positon of circle>
  *      r           : <radius>
  *      rot         : <rotation>                           // default = 0
  *      θ1          : <start angle>                        // default = 0
