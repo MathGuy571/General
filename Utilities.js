@@ -39,7 +39,6 @@ const line = (x1, y1, x2, y2) => {
  *  circle({
  *      pos         : <positon of circle>
  *      r           : <radius>
- *      rot         : <rotation>                           // default = 0
  *      θ1          : <start angle>                        // default = 0
  *      θ2          : <end angle>                          // default = 2*Math.PI
  *      stroke      : <whether to stroke>                  // default = true
