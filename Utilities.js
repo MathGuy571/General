@@ -33,7 +33,7 @@ const line = (x1, y1, x2, y2) => {
 };
 
 /**
- * draws a circle
+ * draws a circle or a circular sector
  *
  * Usage:
  *  circle({
@@ -42,39 +42,36 @@ const line = (x1, y1, x2, y2) => {
  *      θ1          : <start angle>                        // default = 0
  *      θ2          : <end angle>                          // default = 2*Math.PI
  *      stroke      : <whether to stroke>                  // default = true
- *      moveToCentre: <whether add a ctx.moveTo function>  // default = false
+ *      moveToCenter: <whether add a ctx.moveTo function>  // default = false, true will draw a circular sector
  *  });
  */
-const circle = (c) => {
-    ctx.beginPath();
-    if (c.moveToCentre) ctx.moveTo(c.pos[0], c.pos[1]);
-    ctx.arc(
-        c.pos[0], c.pos[1],
-        c.r,
-        c.θ1 || 0,
-        isNaN(c.θ2) ? Math.PI * 2: c.θ2);
-    ctx.closePath();
+
+const circle = (c) => { 
+    ctx.beginPath(); 
+    if (c.moveToCenter) {
+        ctx.moveTo(c.pos[0], c.pos[1]);
+        //convert the angles to their equivalents within [0, 2π] 
+        c.θ1 = equivAngle(c.θ1); 
+        c.θ2 = equivAngle(c.θ2); 
+        //swap them if necessary 
+        if(c.θ1 > c.θ2) { 
+            let temp = c.θ1; 
+            c.θ1 = c.θ2; 
+            c.θ2 = temp; 
+        } 
+    }
+    
+    ctx.arc( 
+        c.pos[0], c.pos[1], 
+        c.r, 
+        c.θ1 || 0, 
+        isNaN(c.θ2) ? Math.PI * 2: c.θ2
+    ); 
+    ctx.closePath(); 
     c.stroke == undefined || c.stroke? ctx.stroke() : ctx.fill();
 };
 
-/**
- * draws a sector
- * required data is same as required to circle
- */
-const circularSector = (c) => {
-    //convert the angles to their equivalents within [0, 2π]
-    c.θ1 = equivAngle(c.θ1);
-    c.θ2 = equivAngle(c.θ2);
-
-    //swap them if necessary
-    if(c.θ1 > c.θ2) {
-        let temp = c.θ1;
-        c.θ1 = c.θ2;
-        c.θ2 = temp;
-    }
-    c.moveToCentre = true;
-    circle(c)
-};
+// returns an equivalent angle within [0, 2π]
 
 const equivAngle = (θ) => {
     if (0 <= θ && θ <= (2*Math.PI)) {
@@ -87,7 +84,6 @@ const equivAngle = (θ) => {
     }
 };
 
-
 /**
  *
  *
@@ -96,6 +92,7 @@ const equivAngle = (θ) => {
  * @param {Array} p3 <position of 3ʳᵈ point>
  * @param {boolean} [stroke=true] whether to stroke
  */
+
 const triangle = (p1, p2, p3, stroke=true) => {
     ctx.beginPath();
     ctx.moveTo(p1[0], p1[1]);
@@ -118,6 +115,7 @@ const triangle = (p1, p2, p3, stroke=true) => {
  *    stroke : <whether to stroke> // default = true
  * });
  */
+
 const ellipse = (c) => {
     ctx.beginPath();
     ctx.ellipse(
@@ -143,7 +141,8 @@ const ellipse = (c) => {
  *      angle: <rotation of text> // default: 0
  *  });
  * @param {Object} c 
- * */
+ */
+
 const text = (c) => {
     var size = isNaN(c.size)? 20: c.size;
     var font = c.font == undefined? "serif": c.font;
