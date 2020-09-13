@@ -159,6 +159,16 @@ const text = (c) => {
     ctx.restore();
 };
 
+const grid = (size, cellSize, color) => {
+    ctx.strokeStyle = color;
+    for(let i = 0; i <= size; i += cellSize) {
+        //vertical lines
+        line(i, 0, i, size);
+        //horizontal lines
+        line(0, i, size, i);
+    }
+};
+
 const drawAxes = (color, pd) => {
     //get previous canvas transformation matrix
     let previousTransform = ctx.getTransform(); 
