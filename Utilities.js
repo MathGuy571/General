@@ -174,6 +174,7 @@ const drawAxes = (color, pd) => {
     let previousTransform = ctx.getTransform(); 
     //reset canvas transform state
     ctx.setTransform(1, 0, 0, 1, 0, 0);
+    //set appropriate line width
     ctx.lineWidth = pd;
     ctx.strokeStyle = color;
     //x-axis
@@ -182,6 +183,8 @@ const drawAxes = (color, pd) => {
     line(c.width/2, 0, c.width/2, c.height);
     //set canvas transform state back to previous state
     ctx.setTransform(previousTransform);
+    //reset line width
+    ctx.lineWidth = 1;
 };
 
 const map = (v, vmin, vmax, mvMin, mvMax) => {
