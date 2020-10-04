@@ -169,13 +169,13 @@ const grid = (size, cellSize, color) => {
     }
 };
 
-const drawAxes = (color, pd) => {
+const drawAxes = (color, width) => {
     //get previous canvas transformation matrix
     let previousTransform = ctx.getTransform(); 
     //reset canvas transform state
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     //set appropriate line width
-    ctx.lineWidth = pd;
+    ctx.lineWidth = isNaN(width) ? pd: width;
     ctx.strokeStyle = color;
     //x-axis
     line(0, c.height/2, c.width, c.height/2);
