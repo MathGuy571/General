@@ -193,6 +193,19 @@ const map = (v, vmin, vmax, mvMin, mvMax) => {
     return a * b + mvMin;
 };
 
+/*
+* Truncates a number up to the digits you specify
+* parameters: 
+*            n -> the number to be truncated,
+*            digits -> how many decimal places you want to keep from the number. (Default: 3 decimal places)
+*/
+const decimalTrunc = (n, digits=3) => {
+    n *= Math.pow(10, digits);
+    n = Math.trunc(n);
+    n /= Math.pow(10, digits);
+    return n;
+};
+
 const sp = () => {
     if(!paused) {
         window.cancelAnimationFrame(fc);
