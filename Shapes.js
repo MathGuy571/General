@@ -91,12 +91,11 @@ const ellipse = (c) => {
  *  Using:
  *   text({
  *      text: <your text>,
- *      x: <x_location>,
- *      y: <y_location>,
+ *      pos: <text position>,
  *      size: <font-size>, //default : 20
+ *      angle: <rotation of text> // default: 0
  *      font: <font-family>, // default: serif
  *      color: <text-color>, // default: #000
- *      angle: <rotation of text> // default: 0
  *   });
  * @param {Object} c 
  */
@@ -110,7 +109,7 @@ const text = (c) => {
     ctx.fillStyle = c.color == undefined? "#000": c.color;;
 
     ctx.save();
-    ctx.translate(c.x, c.y);
+    ctx.translate(c.pos[0], c.pos[1]);
     ctx.rotate(isNaN(c.angle) ? 0: c.angle);
     ctx.fillText(c.text, 0, 0);
     ctx.restore();
