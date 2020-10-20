@@ -5,7 +5,19 @@
 *  max -> the maximum value, default = 1
 *  e.g. let rand = random(-10, 10); will return a random number between -10 & 10
 */
-const random = (min = 0, max = 1) => Math.random() * (max - min) + min;
+const random = (min, max) => {
+    if(min == undefined && max == undefined) {
+        min = 0;
+        max = 1;
+    } else if(max == undefined) {
+        max = 0;
+        let temp = min;
+        min = max;
+        max = temp;
+    }
+    
+    return Math.random() * (max - min) + min;
+};
 
 /* 
 *  Creates and ads an fps div
