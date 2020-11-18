@@ -1,0 +1,11 @@
+{
+  "name": "@mathguy571/general",
+  "type": "module",
+  "module": "index.js",
+  "description": "basic shapes",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MathGuy571/General.git"
+  },
+  "homepage": "https://github.com/MathGuy571/General"
+}
