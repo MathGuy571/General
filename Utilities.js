@@ -100,7 +100,7 @@ export const decimalTrunc = (n, digits = 3) => {
 /*
  *  Starts or pauses animation frame
  */
-export const sp = () => {
+export const sp = (paused, fc, animate) => {
   if (!paused) {
     window.cancelAnimationFrame(fc)
     paused = true
@@ -118,7 +118,7 @@ export const sp = () => {
  *  p -> canvas pixel density, type: number
  *  e.g if pd = 3 you'll have 3 pixels in place of one
  */
-export const setSize = (w, h, pd) => {
+export const setSize = (c, ctx, W, H, w, h, pd) => {
   //canvas apparent size
   c.style.width = `${w}px`
   c.style.height = `${h}px`
@@ -128,7 +128,8 @@ export const setSize = (w, h, pd) => {
   c.height = h * pd
 
   //set global Width & Height as apparent width & height
-  ;(W = w), (H = h)
+  W = w
+  H = h
 
   //normalise coordinates
   ctx.scale(pd, pd)
@@ -140,7 +141,7 @@ export const setSize = (w, h, pd) => {
  *  color -> color, type: string
  *  e.g. 'rgba(0, 0, 0, 0.5)'
  */
-export const clear = (color) => {
+export const clear = (c, ctx, color) => {
   //get previous canvas transformation matrix
   let previousTransform = ctx.getTransform()
   //reset canvas transform state

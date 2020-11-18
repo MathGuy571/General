@@ -1,4 +1,4 @@
-export { drawAxes, grid, triangle, circle, ellipse, text, line } from './Shapes'
+export { line, circle, triangle, ellipse, text, grid, drawAxes } from './Shapes'
 
 export { Joystick } from './Joystick'
 

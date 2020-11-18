@@ -43,7 +43,7 @@ export class Joystick {
     this.s.y = (5 * H) / 6
   }
 
-  draw() {
+  draw(ctx) {
     //joypad
     ctx.beginPath()
     ctx.arc(this.p.x, this.p.y, this.pr, 0, 2 * Math.PI)

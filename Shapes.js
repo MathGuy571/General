@@ -1,7 +1,7 @@
 /*
  *  Creates a line between 2 points: (x1, y1), (x2, y2)
  */
-export const line = (x1, y1, x2, y2) => {
+export const line = (ctx, x1, y1, x2, y2) => {
   ctx.beginPath()
   ctx.moveTo(x1, y1)
   ctx.lineTo(x2, y2)
@@ -21,7 +21,7 @@ export const line = (x1, y1, x2, y2) => {
  *       moveToCenter: <whether add a ctx.moveTo function>  // default = false, true will draw a circular sector
  *   });
  */
-export const circle = (c) => {
+export const circle = (ctx, c) => {
   ctx.beginPath()
   if (c.moveToCenter) {
     ctx.moveTo(c.pos[0], c.pos[1])
@@ -48,7 +48,7 @@ export const circle = (c) => {
  * @param {Array} p3 <position of 3ʳᵈ point>
  * @param {boolean} [stroke=true] whether to stroke or not
  */
-export const triangle = (p1, p2, p3, stroke = true) => {
+export const triangle = (ctx, p1, p2, p3, stroke = true) => {
   ctx.beginPath()
   ctx.moveTo(p1[0], p1[1])
   ctx.lineTo(p2[0], p2[1])
@@ -69,7 +69,7 @@ export const triangle = (p1, p2, p3, stroke = true) => {
  *     stroke : <whether to stroke> // default = true
  *   });
  */
-export const ellipse = (c) => {
+export const ellipse = (ctx, c) => {
   ctx.beginPath()
   ctx.ellipse(c.pos[0], c.pos[1], c.rx, c.ry, c.rot || 0, c.θ1 || 0, isNaN(c.θ2) ? 2 * Math.PI : c.θ2)
   ctx.closePath()
@@ -89,7 +89,7 @@ export const ellipse = (c) => {
  *   });
  * @param {Object} c
  */
-export const text = (c) => {
+export const text = (ctx, c) => {
   var size = isNaN(c.size) ? 20 : c.size
   var font = c.font == undefined ? 'serif' : c.font
 
@@ -112,7 +112,7 @@ export const text = (c) => {
  *  cellSize -> self explanatory, type: number
  *  color -> self explanatory, type: string
  */
-export const grid = (size, cellSize, color) => {
+export const grid = (ctx, size, cellSize, color) => {
   ctx.strokeStyle = color
   for (let i = 0; i <= size; i += cellSize) {
     //vertical lines
@@ -128,7 +128,7 @@ export const grid = (size, cellSize, color) => {
  *  color -> self explanatory, type: string
  *  width -> width of line of the axes, type: number
  */
-export const drawAxes = (color, width) => {
+export const drawAxes = (ctx, color, width) => {
   //get previous canvas transformation matrix
   let previousTransform = ctx.getTransform()
   //reset canvas transform state

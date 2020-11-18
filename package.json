@@ -1,5 +1,9 @@
 {
+  "version": "0.0.0",
   "name": "@mathguy571/general",
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "module": "index.js",
   "description": "basic shapes",
