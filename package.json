@@ -11,5 +11,12 @@
     "type": "git",
     "url": "https://github.com/MathGuy571/General.git"
   },
-  "homepage": "https://github.com/MathGuy571/General"
+  "homepage": "https://github.com/MathGuy571/General",
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.14.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.2.0"
+  }
 }

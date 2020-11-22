@@ -22,7 +22,7 @@ export class Vector {
   }
 
   angle() {
-    return Math.Atan2(this.y, this.x)
+    return Math.atan2(this.y, this.x)
   }
 
   magn() {
@@ -30,7 +30,7 @@ export class Vector {
   }
 
   norm() {
-    let mg = this.magn()
+    const mg = this.magn()
     this.x /= mg
     this.y /= mg
   }

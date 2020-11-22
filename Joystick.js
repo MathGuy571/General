@@ -1,5 +1,8 @@
+import { Vector } from './Vector.js'
+import { map } from './Utilities.js'
+
 export class Joystick {
-  constructor() {
+  constructor(W, H) {
     //joypad
     this.p = new Vector(W / 4, (5 * H) / 6)
     this.pr = 40
@@ -10,6 +13,9 @@ export class Joystick {
     this.down = false
     this.nv = new Vector(0, 0)
     this.maxMove = 3 //max movement speed
+
+    this.H = H
+    this.W = W
   }
 
   start(e) {
@@ -22,8 +28,8 @@ export class Joystick {
     this.s.y = e.touches[0].clientY
 
     //contain joystick within joypad
-    let dist = Math.min(Math.hypot(this.s.x - this.p.x, this.s.y - this.p.y), this.pr)
-    let θ = Math.atan2(this.s.y - this.p.y, this.s.x - this.p.x)
+    const dist = Math.min(Math.hypot(this.s.x - this.p.x, this.s.y - this.p.y), this.pr)
+    const θ = Math.atan2(this.s.y - this.p.y, this.s.x - this.p.x)
     this.s.x = this.p.x + dist * Math.cos(θ)
     this.s.y = this.p.y + dist * Math.sin(θ)
 
@@ -33,14 +39,14 @@ export class Joystick {
     //normalise the vector
     this.nv.norm()
     //scale the normalised vector according to joystick distance from joypad center
-    let mapedDist = map(dist, 0, this.pr, 0, this.maxMove)
+    const mapedDist = map(dist, 0, this.pr, 0, this.maxMove)
     this.nv.scale(mapedDist)
   }
 
   end(e) {
     this.down = false
-    this.s.x = W / 4
-    this.s.y = (5 * H) / 6
+    this.s.x = this.W / 4
+    this.s.y = (5 * this.H) / 6
   }
 
   draw(ctx) {

@@ -1,3 +1,5 @@
+import { equivAngle } from './Utilities.js'
+
 /*
  *  Creates a line between 2 points: (x1, y1), (x2, y2)
  */
@@ -128,7 +130,7 @@ export const grid = (ctx, size, cellSize, color) => {
  *  color -> self explanatory, type: string
  *  width -> width of line of the axes, type: number
  */
-export const drawAxes = (ctx, color, width) => {
+export const drawAxes = (c, ctx, color, pd, width) => {
   //get previous canvas transformation matrix
   let previousTransform = ctx.getTransform()
   //reset canvas transform state

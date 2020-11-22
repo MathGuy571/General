@@ -11,7 +11,7 @@ export const random = (min, max) => {
     max = 1
   } else if (max == undefined) {
     max = 0
-    let temp = min
+    const temp = min
     min = max
     max = temp
   }
@@ -19,16 +19,24 @@ export const random = (min, max) => {
   return Math.random() * (max - min) + min
 }
 
-/*
+/**
+ *
  *  Creates and ads an fps div
  *  parameters:
  *  id -> id of fps div, type: string
  *  top -> margin from top of the screen, type: string
  *  left -> margin from left of the screen, type: string
  *  color -> self explanatory, type: string
- *  e.g. let fps = new FpsDiv("Fps", "15px", "20px", "#3f0");
+ *  e.g. `let fps = new FpsDiv("Fps", "15px", "20px", "#3f0")`
  */
 export class FpsDiv {
+  /**
+   *
+   * @param {*} id
+   * @param {*} top
+   * @param {*} left
+   * @param {string} color
+   */
   constructor(id, top, left, color) {
     this.div = document.createElement('div')
     //set id
@@ -41,23 +49,22 @@ export class FpsDiv {
     //set creation timestamp
     this.time = performance.now()
     //append fps div to body
-    let body = document.getElementsByTagName('BODY')[0]
+    const body = document.getElementsByTagName('BODY')[0]
     body.appendChild(this.div)
   }
 
   calc() {
-    let dt = performance.now() - this.time
+    const dt = performance.now() - this.time
     this.time = performance.now()
     this.div.innerText = `fps: ${Math.round(1000 / dt)}`
   }
 }
 
-/*
- *  Returns an equivalent angle within [0, 2π]
- *  parameter:
- *  θ ->  angle value, type: number
+/**
+ * Returns an equivalent angle within [0, 2π]
+ * @param {number} θ
  */
-export const equivAngle = (θ) => {
+export const equivAngle = θ => {
   if (0 <= θ && θ <= 2 * Math.PI) {
     return θ
   } else if (θ > 2 * Math.PI) {
@@ -68,19 +75,35 @@ export const equivAngle = (θ) => {
 }
 
 /*
- *  Maps a value that belongs in a specific range to a target value within a target range
+ 
  *  parameters:
  *  v -> value to be mapped,
- *  vmin -> minimum of value range,
+ *  vmin -> ,
  *  vmax -> maximum of value range,
  *  vmin -> minimum of target range,
  *  vmax -> maximum of target range
- *  e.g. let dist = 30; // with maximum value of 100
- *  dist = map(30, 0 , 100, 0, 200); //will return 60
+ *  
+ *  
+ */
+
+/**
+ * Maps a value that belongs in a specific range to a target value within a target range
+ * @param {number} v value to be mapped,
+ * @param {number} vmin minimum of value range
+ * @param {*} vmax
+ * @param {*} mvMin
+ * @param {*} mvMax
+ *
+ * @example
+ *
+ * ```js
+ * let dist = 30; // with maximum value of 100
+ * dist = map(30, 0 , 100, 0, 200); //will return 60
+ * ```
  */
 export const map = (v, vmin, vmax, mvMin, mvMax) => {
-  let a = (mvMax - mvMin) / (vmax - vmin)
-  let b = v - vmin
+  const a = (mvMax - mvMin) / (vmax - vmin)
+  const b = v - vmin
   return a * b + mvMin
 }
 
@@ -143,7 +166,7 @@ export const setSize = (c, ctx, W, H, w, h, pd) => {
  */
 export const clear = (c, ctx, color) => {
   //get previous canvas transformation matrix
-  let previousTransform = ctx.getTransform()
+  const previousTransform = ctx.getTransform()
   //reset canvas transform state
   ctx.setTransform(1, 0, 0, 1, 0, 0)
   if (color == null) {
