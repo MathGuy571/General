@@ -124,13 +124,13 @@ export const decimalTrunc = (n, digits = 3) => {
  *  Starts or pauses animation frame
  */
 export const sp = (paused, fc, animate) => {
-  if (paused == false) {
+  if (paused === false) {
     window.cancelAnimationFrame(fc)
-    paused = true
   } else {
-    paused = false
     window.requestAnimationFrame(animate)
   }
+  paused = !paused
+  return paused
 }
 
 /*
