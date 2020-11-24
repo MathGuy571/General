@@ -32,7 +32,7 @@ export const circle = (ctx, c) => {
     c.θ2 = equivAngle(c.θ2)
     //swap them if necessary
     if (c.θ1 > c.θ2) {
-      let temp = c.θ1
+      const temp = c.θ1
       c.θ1 = c.θ2
       c.θ2 = temp
     }
@@ -92,11 +92,11 @@ export const ellipse = (ctx, c) => {
  * @param {Object} c
  */
 export const text = (ctx, c) => {
-  var size = isNaN(c.size) ? 20 : c.size
-  var font = c.font == undefined ? 'serif' : c.font
+  const size = isNaN(c.size) ? 20 : c.size
+  const font = c.font == undefined ? 'serif' : c.font
 
-  let s = size + 'px'
-  let f = ' ' + font
+  const s = size + 'px'
+  const f = ' ' + font
   ctx.font = s + f
   ctx.fillStyle = c.color == undefined ? '#000' : c.color
 
@@ -132,7 +132,7 @@ export const grid = (ctx, size, cellSize, color) => {
  */
 export const drawAxes = (c, ctx, color, pd, width) => {
   //get previous canvas transformation matrix
-  let previousTransform = ctx.getTransform()
+  const previousTransform = ctx.getTransform()
   //reset canvas transform state
   ctx.setTransform(1, 0, 0, 1, 0, 0)
   //set appropriate line width

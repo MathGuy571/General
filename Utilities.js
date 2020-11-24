@@ -128,8 +128,8 @@ export const sp = (paused, fc, animate) => {
     window.cancelAnimationFrame(fc)
     paused = true
   } else {
-    window.requestAnimationFrame(animate)
     paused = false
+    window.requestAnimationFrame(animate)
   }
 }
 
