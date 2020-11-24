@@ -14,7 +14,7 @@ export const line = (ctx, x1, y1, x2, y2) => {
 /*
  *  Draws a circle or a circular sector
  *  Usage:
- *   circle({
+ *   circle(ctx, {
  *       pos         : <positon of circle>
  *       r           : <radius>
  *       θ1          : <start angle>                        // default = 0
