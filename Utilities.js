@@ -1,9 +1,9 @@
-/*
- *  Returns a random number within a specified range
- *  parameters:
- *  min -> the minimum value, default = 0,
- *  max -> the maximum value, default = 1
- *  e.g. let rand = random(-10, 10); will return a random number between -10 & 10
+/**
+ * Returns a random number within a specified range
+ * @param {number} min
+ * @param {number} max
+ * @example: let rand = random(-10, 10)
+ * will return a random number between -10 & 10
  */
 export const random = (min, max) => {
   if (min == undefined && max == undefined) {
@@ -19,23 +19,14 @@ export const random = (min, max) => {
   return Math.random() * (max - min) + min
 }
 
-/**
- *
- *  Creates and ads an fps div
- *  parameters:
- *  id -> id of fps div, type: string
- *  top -> margin from top of the screen, type: string
- *  left -> margin from left of the screen, type: string
- *  color -> self explanatory, type: string
- *  e.g. `let fps = new FpsDiv("Fps", "15px", "20px", "#3f0")`
- */
 export class FpsDiv {
   /**
    *
-   * @param {*} id
-   * @param {*} top
-   * @param {*} left
-   * @param {string} color
+   * @param {string} id -> id of fps div
+   * @param {string} top -> margin from top of the screen
+   * @param {string} left -> margin from left of the screen
+   * @param {string} color -> self explanatory
+   * @example:`let fps = new FpsDiv("Fps", "15px", "20px", "#3f0")`
    */
   constructor(id, top, left, color) {
     this.div = document.createElement('div')
@@ -74,25 +65,13 @@ export const equivAngle = θ => {
   }
 }
 
-/*
- 
- *  parameters:
- *  v -> value to be mapped,
- *  vmin -> ,
- *  vmax -> maximum of value range,
- *  vmin -> minimum of target range,
- *  vmax -> maximum of target range
- *  
- *  
- */
-
 /**
- * Maps a value that belongs in a specific range to a target value within a target range
+ * Maps a value that belongs in a specific range to a target value into a new target range
  * @param {number} v value to be mapped,
- * @param {number} vmin minimum of value range
- * @param {*} vmax
- * @param {*} mvMin
- * @param {*} mvMax
+ * @param {number} vmin -> minimum of value range
+ * @param {number} vmax -> maximum of value range
+ * @param {number} mvMin -> minimum of target range
+ * @param {number} mvMax -> maximum of target range
  *
  * @example
  *
@@ -107,11 +86,11 @@ export const map = (v, vmin, vmax, mvMin, mvMax) => {
   return a * b + mvMin
 }
 
-/*
+/**
  * Truncates a number up to the digits you specify
- * parameters:
- * n -> the number to be truncated,
- * digits -> how many decimal places you want to keep //default: 3 decimal places(will keep 3 digits)
+ * @param {number} n -> the number to be truncated
+ * @param {number} digits -> how many decimal places you want to keep
+ * default: 3 decimal places (will keep 3 digits)
  */
 export const decimalTrunc = (n, digits = 3) => {
   n *= Math.pow(10, digits)
@@ -123,7 +102,7 @@ export const decimalTrunc = (n, digits = 3) => {
 /**
  * Starts or pauses animation frame
  * @param {boolean} paused
- * @param {number} fc (The ID value returned by the call to window.requestAnimationFrame() that requested the callback.)
+ * @param {number} fc -> The ID value returned by the call to window.requestAnimationFrame() that requested the callback.
  * @param {*} animate
  */
 export const sp = (paused, fc, animate) => {
@@ -136,13 +115,15 @@ export const sp = (paused, fc, animate) => {
   return paused
 }
 
-/*
- *  Sets canvas size as well as pixel density
- *  parameters:
- *  w -> canvas width, type: number
- *  h -> canvas height, type: number
- *  p -> canvas pixel density, type: number
- *  e.g if pd = 3 you'll have 3 pixels in place of one
+/**
+ * Sets canvas size as well as pixel density
+ * @param {object} c
+ * @param {object} ctx
+ * @param {*} W
+ * @param {*} H
+ * @param {number} w
+ * @param {number} h
+ * @param {number} pd -> device pixel ratio
  */
 export const setSize = (c, ctx, W, H, w, h, pd) => {
   //canvas apparent size
@@ -161,11 +142,12 @@ export const setSize = (c, ctx, W, H, w, h, pd) => {
   ctx.scale(pd, pd)
 }
 
-/*
- *  Clears whole canvas disregarding the state of transformation matrix
- *  parameter:
- *  color -> color, type: string
- *  e.g. 'rgba(0, 0, 0, 0.5)'
+/**
+ * Clears whole canvas disregarding the state of transformation matrix
+ * @param {object} c
+ * @param {object} ctx
+ * @param {string} color
+ * @example: 'rgba(0, 0, 0, 0.5)'
  */
 export const clear = (c, ctx, color) => {
   //get previous canvas transformation matrix
