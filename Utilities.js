@@ -120,8 +120,11 @@ export const decimalTrunc = (n, digits = 3) => {
   return n
 }
 
-/*
- *  Starts or pauses animation frame
+/**
+ * Starts or pauses animation frame
+ * @param {boolean} paused
+ * @param {number} fc (The ID value returned by the call to window.requestAnimationFrame() that requested the callback.)
+ * @param {*} animate
  */
 export const sp = (paused, fc, animate) => {
   if (paused === false) {
