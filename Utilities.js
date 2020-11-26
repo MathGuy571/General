@@ -10,9 +10,8 @@ export const random = (min, max) => {
     min = 0
     max = 1
   } else if (max == undefined) {
-    max = 0
     const temp = min
-    min = max
+    min = 0
     max = temp
   }
 
@@ -66,7 +65,7 @@ export const equivAngle = θ => {
 }
 
 /**
- * Maps a value that belongs in a specific range to a target value into a new target range
+ * Maps a value that belongs in a specific range into a new target range
  * @param {number} v value to be mapped,
  * @param {number} vmin -> minimum of value range
  * @param {number} vmax -> maximum of value range
