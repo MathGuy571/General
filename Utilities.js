@@ -118,8 +118,8 @@ export const sp = (paused, fc, animate) => {
  * Sets canvas size as well as pixel density
  * @param {object} c
  * @param {object} ctx
- * @param {*} W
- * @param {*} H
+ * @param {number} W
+ * @param {number} H
  * @param {number} w
  * @param {number} h
  * @param {number} pd -> device pixel ratio
