@@ -118,13 +118,11 @@ export const sp = (paused, fc, animate) => {
  * Sets canvas size as well as pixel density
  * @param {object} c
  * @param {object} ctx
- * @param {number} W
- * @param {number} H
  * @param {number} w
  * @param {number} h
  * @param {number} pd -> device pixel ratio
  */
-export const setSize = (c, ctx, W, H, w, h, pd) => {
+export const setSize = (c, ctx, w, h, pd) => {
   //canvas apparent size
   c.style.width = `${w}px`
   c.style.height = `${h}px`
@@ -133,13 +131,8 @@ export const setSize = (c, ctx, W, H, w, h, pd) => {
   c.width = w * pd
   c.height = h * pd
 
-  //set global Width & Height as apparent width & height
-  W = w
-  H = h
-
   //normalise coordinates
   ctx.scale(pd, pd)
-  return [W, H]
 }
 
 /**
