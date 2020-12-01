@@ -133,6 +133,7 @@ export const setSize = (c, ctx, w, h, pd) => {
 
   //normalise coordinates
   ctx.scale(pd, pd)
+  return c
 }
 
 /**
