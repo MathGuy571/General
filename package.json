@@ -1,5 +1,5 @@
 {
-  "version": "0.0.1",
+  "version": "0.0.2",
   "name": "@mathguy571/general",
   "publishConfig": {
     "access": "public"
@@ -13,7 +13,6 @@
   },
   "homepage": "https://github.com/MathGuy571/General",
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
     "eslint": "^7.14.0",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-import": "^2.22.1",

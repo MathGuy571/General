@@ -4,4 +4,4 @@ export { Joystick } from './Joystick.js'
 
 export { Vector } from './Vector.js'
 
-export { random, setSize, FpsDiv, equivAngle, map, decimalTrunc, sp, clear } from './Utilities'
+export { random, setSize, FpsDiv, equivAngle, map, decimalTrunc, sp, clear } from './Utilities.js'
