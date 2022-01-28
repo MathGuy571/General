@@ -24,7 +24,7 @@ export class FpsDiv {
    * @param {string} id -> id of fps div
    * @param {string} top -> margin from top of the screen
    * @param {string} left -> margin from left of the screen
-   * @param {string} color -> self explanatory
+   * @param {string} color -> color format string
    * @example:`let fps = new FpsDiv("Fps", "15px", "20px", "#3f0")`
    */
   constructor(id, top, left, color) {
@@ -75,8 +75,8 @@ export const equivAngle = θ => {
  * @example
  *
  * ```js
- * let dist = 30; // with maximum value of 100
- * dist = map(30, 0 , 100, 0, 200); //will return 60
+ * let dist = 30; // within range: [0, 100]
+ * dist = map(30, 0 , 100, 0, 200); // will return 60 within new range: [0, 200]
  * ```
  */
 export const map = (v, vmin, vmax, mvMin, mvMax) => {
@@ -91,7 +91,7 @@ export const map = (v, vmin, vmax, mvMin, mvMax) => {
  * @param {number} digits -> how many decimal places you want to keep
  * default: 3 decimal places (will keep 3 digits)
  */
-export const decimalTrunc = (n, digits = 3) => {
+export const decimalTrunc = (n = 1.23456789, digits = 3) => {
   n *= Math.pow(10, digits)
   n = Math.trunc(n)
   n /= Math.pow(10, digits)
@@ -100,9 +100,9 @@ export const decimalTrunc = (n, digits = 3) => {
 
 /**
  * Starts or pauses animation frame
- * @param {boolean} paused
- * @param {number} fc -> The ID value returned by the call to window.requestAnimationFrame() that requested the callback.
- * @param {*} animate
+ * @param {boolean} paused -> animation state
+ * @param {number} fid -> The ID value returned by the call to window.requestAnimationFrame() that requested the callback.
+ * @param {function} -> name of animating function
  */
 export const sp = (paused, fid, animate) => {
   paused ? cancelAnimationFrame(fid) : requestAnimationFrame(animate)
@@ -112,13 +112,19 @@ export const sp = (paused, fid, animate) => {
 
 /**
  * Sets canvas size as well as pixel density
- * @param {object} c
- * @param {object} ctx
- * @param {number} w
- * @param {number} h
+ * @param {HTMLCanvasElement} c -> canvas
+ * @param {CanvasRenderingContext2D} ctx -> canvas context
+ * @param {number} w -> canvas width
+ * @param {number} h -> canvas height
  * @param {number} pd -> device pixel ratio
  */
-export const setSize = (c, ctx, w, h, pd) => {
+export const setSize = (
+  c = HTMLCanvasElement,
+  ctx = CanvasRenderingContext2D,
+  w = window.innerWidth,
+  h = window.innerHeight,
+  pd
+) => {
   //canvas apparent size
   c.style.width = `${w}px`
   c.style.height = `${h}px`
@@ -134,12 +140,12 @@ export const setSize = (c, ctx, w, h, pd) => {
 
 /**
  * Clears whole canvas disregarding the state of transformation matrix
- * @param {object} c
- * @param {object} ctx
- * @param {string} color
+ * @param {HTMLCanvasElement} c -> canvas
+ * @param {CanvasRenderingContext2D} ctx -> canvas context
+ * @param {string} color -> color format string
  * @example: 'rgba(0, 0, 0, 0.5)'
  */
-export const clear = (c, ctx, color) => {
+export const clear = (c = HTMLCanvasElement, ctx = CanvasRenderingContext2D, color = 'rgba(0, 0, 0, 1)') => {
   //get previous canvas transformation matrix
   const previousTransform = ctx.getTransform()
   //reset canvas transform state
