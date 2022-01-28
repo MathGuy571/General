@@ -2,23 +2,22 @@ import { equivAngle } from './Utilities.js'
 
 /**
  * Creates a line between 2 points: (x1, y1), (x2, y2)
- * @param {object} ctx -> canvas context
+ * @param {CanvasRenderingContext2D} ctx -> canvas context
  * @param {number} x1 -> point1 x coordinate
  * @param {number} y1 -> point1 y coordinate
  * @param {number} x2 -> point2 x coordinate
  * @param {number} y2 -> point2 y coordinate
  */
-export const line = (ctx, x1, y1, x2, y2) => {
+export const line = (ctx = CanvasRenderingContext2D, x1 = 0, y1 = 0, x2 = 100, y2 = 100) => {
   ctx.beginPath()
   ctx.moveTo(x1, y1)
   ctx.lineTo(x2, y2)
   ctx.stroke()
-  ctx.closePath()
 }
 
 /**
  *
- * @param {object} ctx -> canvas context
+ * @param {CanvasRenderingContext2D} ctx -> canvas context
  * @param {object} c -> circle object
  * @example:
  * circle(ctx, {
@@ -30,7 +29,7 @@ export const line = (ctx, x1, y1, x2, y2) => {
  *       moveToCenter: false <whether add a ctx.moveTo function>  // default = false, true will draw a circular sector
  *   })
  */
-export const circle = (ctx, c) => {
+export const circle = (ctx = CanvasRenderingContext2D, c) => {
   ctx.beginPath()
   if (c.moveToCenter) {
     ctx.moveTo(c.pos[0], c.pos[1])
@@ -52,24 +51,36 @@ export const circle = (ctx, c) => {
 
 /**
  * Creates a triangle from 3 points: (x1, y1), (x2, y2), (x3, y3)
- * @param {object} ctx -> canvas context
- * @param {Array} p1 -> coordinates of point 1
- * @param {Array} p2 -> coordinates of point 2
- * @param {Array} p3 -> coordinates of point 3
+ * @param {CanvasRenderingContext2D} ctx -> canvas context
+ * @param {number} x1 -> x coordinate of point 1
+ * @param {number} y1 -> y coordinate of point 1
+ * @param {number} x2 -> x coordinate of point 2
+ * @param {number} y2 -> y coordinate of point 2
+ * @param {number} x3 -> x coordinate of point 3
+ * @param {number} y3 -> y coordinate of point 3
  * @param {boolean} stroke -> boolean stroke or fill
  */
-export const triangle = (ctx, p1, p2, p3, stroke = true) => {
+export const triangle = (
+  ctx = CanvasRenderingContext2D,
+  x1 = 0,
+  y1 = 0,
+  x2 = 100,
+  y2 = 100,
+  x3 = 50,
+  y3 = 150,
+  stroke = true
+) => {
   ctx.beginPath()
-  ctx.moveTo(p1[0], p1[1])
-  ctx.lineTo(p2[0], p2[1])
-  ctx.lineTo(p3[0], p3[1])
+  ctx.moveTo(x1, y1)
+  ctx.lineTo(x2, y2)
+  ctx.lineTo(x3, y3)
   ctx.closePath()
   stroke ? ctx.stroke() : ctx.fill()
 }
 
 /**
  *
- * @param {object} ctx -> canvas context
+ * @param {CanvasRenderingContext2D} ctx -> canvas context
  * @param {object} c -> ellipse object
  * @example:
  * ellipse({
@@ -82,7 +93,7 @@ export const triangle = (ctx, p1, p2, p3, stroke = true) => {
  *     stroke : false <stroke or fill> // default = true
  *   })
  */
-export const ellipse = (ctx, c) => {
+export const ellipse = (ctx = CanvasRenderingContext2D, c) => {
   ctx.beginPath()
   ctx.ellipse(c.pos[0], c.pos[1], c.rx, c.ry, c.rot || 0, c.θ1 || 0, isNaN(c.θ2) ? 2 * Math.PI : c.θ2)
   ctx.closePath()
@@ -91,7 +102,7 @@ export const ellipse = (ctx, c) => {
 
 /**
  * Draws text on canvas
- * @param {object} ctx -> canvas context
+ * @param {CanvasRenderingContext2D} ctx -> canvas context
  * @param {object} c -> text object
  * @example:
  * text({
@@ -103,7 +114,7 @@ export const ellipse = (ctx, c) => {
  *      color: <text-color>, // default: #000
  *   })
  */
-export const text = (ctx, c) => {
+export const text = (ctx = CanvasRenderingContext2D, c) => {
   const size = isNaN(c.size) ? 20 : c.size
   const font = c.font == undefined ? 'serif' : c.font
 
@@ -121,12 +132,12 @@ export const text = (ctx, c) => {
 
 /**
  *
- * @param {object} ctx -> canvas context
+ * @param {CanvasRenderingContext2D} ctx -> canvas context
  * @param {number} size
  * @param {number} cellSize
  * @param {string} color -> color format string
  */
-export const grid = (ctx, size, cellSize, color) => {
+export const grid = (ctx = CanvasRenderingContext2D, size = 10, cellSize = 2, color = 'rgb(255, 255, 255)') => {
   ctx.strokeStyle = color
   for (let i = 0; i <= size; i += cellSize) {
     //vertical lines
@@ -138,13 +149,19 @@ export const grid = (ctx, size, cellSize, color) => {
 
 /**
  *Draws axes disregarding the state of transformation matrix
- * @param {object} c -> canvas object
- * @param {object} ctx -> canvas context
+ * @param {HTMLCanvasElement} c -> canvas
+ * @param {CanvasRenderingContext2D} ctx -> canvas context
  * @param {string} color -> color format string
  * @param {number} pd -> device pixel ratio
  * @param {number} width -> line width
  */
-export const drawAxes = (c, ctx, color, pd, width) => {
+export const drawAxes = (
+  c = HTMLCanvasElement,
+  ctx = CanvasRenderingContext2D,
+  color = 'rgb(255, 255, 255)',
+  pd = window.devicePixelRatio,
+  width = 100
+) => {
   //get previous canvas transformation matrix
   const previousTransform = ctx.getTransform()
   //reset canvas transform state
